@@ -1,0 +1,48 @@
+﻿@model List<My_Evidence.Models.ViewModels.OrderVM>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<br />
+@Html.ActionLink("Create new Order", "Index", null, new { @class = "btn btn-primary" })
+
+<h2>Order List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+            <th>Order Date</th>
+            <th>Description</th>
+            <th>Address Proof Image</th>
+            <th>Terms</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderID</td>
+                <td>@order.ProductID</td>
+                <td>@order.Quantity</td>
+                <td>@order.Rate</td>
+                <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                <td>@order.Description</td>
+                <td><img src=@order.AddressProofImage height="80" width="80" /></td>
+                <td>@order.Terms</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = order.OrderID }, new { @class = "btn btn-primary" })
+                    |
+                    @Html.ActionLink("Delete", "Delete", new { id = order.OrderID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
